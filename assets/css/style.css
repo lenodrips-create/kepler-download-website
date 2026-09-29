@@ -1155,7 +1155,7 @@ code {
 
 .shots {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1.5fr 1fr;
   gap: clamp(16px, 2.5vw, 28px);
   align-items: center;
 }
@@ -1178,6 +1178,7 @@ code {
 
 @media (max-width: 720px) {
   .shots { grid-template-columns: 1fr; }
+  .shot-mid { order: -1; }
   .shot-side { max-width: 420px; }
 }
 
@@ -1188,18 +1189,3 @@ code {
 .hero-copy .eyebrow { justify-content: center; }
 .hero .hero-actions,
 .hero .hero-meta { justify-content: center; }
-
-.hero-shot {
-  margin: clamp(40px, 7vh, 72px) auto 0;
-  max-width: 1080px;
-}
-
-.hero-shot img {
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.03),
-    0 40px 120px -40px rgba(255, 255, 255, 0.18);
-}

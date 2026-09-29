@@ -26,6 +26,7 @@
       "nav.download": "Descargar",
       "nav.donate": "Donar",
       "shots.main": "Kepler con el panel de IA integrado: Claude, ChatGPT, Gemini, Copilot y Perplexity a un clic.",
+      "shots.mid": "Modo oscuro para todos los sitios, incluso Wikipedia.",
       "shots.side": "Navegación segura: privada, solo HTTPS, todos los rastreadores bloqueados, nada guardado.",
 
       "hero.eyebrow": "Código abierto · Auditado · v0.9 beta",
@@ -110,6 +111,7 @@
       "nav.download": "Télécharger",
       "nav.donate": "Faire un don",
       "shots.main": "Kepler avec le panneau d'IA intégré : Claude, ChatGPT, Gemini, Copilot et Perplexity à portée de clic.",
+      "shots.mid": "Le mode sombre sur tous les sites, même Wikipédia.",
       "shots.side": "Navigation sécurisée : privée, HTTPS uniquement, tous les traqueurs bloqués, rien enregistré.",
 
       "hero.eyebrow": "Open source · Audité · v0.9 bêta",
@@ -194,6 +196,7 @@
       "nav.download": "Download",
       "nav.donate": "Spenden",
       "shots.main": "Kepler mit dem integrierten KI-Panel – Claude, ChatGPT, Gemini, Copilot und Perplexity nur einen Klick entfernt.",
+      "shots.mid": "Dunkelmodus für jede Seite – sogar Wikipedia.",
       "shots.side": "Sicheres Surfen: privat, nur HTTPS, jeder Tracker blockiert, nichts gespeichert.",
 
       "hero.eyebrow": "Open Source · Geprüft · v0.9 Beta",
@@ -278,6 +281,7 @@
       "nav.download": "Baixar",
       "nav.donate": "Doar",
       "shots.main": "Kepler com o painel de IA integrado — Claude, ChatGPT, Gemini, Copilot e Perplexity a um clique.",
+      "shots.mid": "Modo escuro em todos os sites — até na Wikipédia.",
       "shots.side": "Navegação segura: privada, só HTTPS, todos os rastreadores bloqueados, nada salvo.",
 
       "hero.eyebrow": "Código aberto · Auditado · v0.9 beta",
