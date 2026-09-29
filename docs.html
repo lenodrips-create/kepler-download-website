@@ -29,11 +29,20 @@
           <span></span>
         </button>
         <ul class="nav-links" id="navLinks">
-          <li><a href="index.html">Overview</a></li>
-          <li><a href="index.html#security">Security</a></li>
-          <li><a href="index.html#developers">Developers</a></li>
-          <li><a href="docs.html" aria-current="page">Docs</a></li>
-          <li><a class="btn btn-solid btn-sm" href="download.html">Download</a></li>
+          <li><a href="index.html" data-i18n="nav.overview">Overview</a></li>
+          <li class="lang-item">
+            <select class="lang-select" id="langSelect" aria-label="Language">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+              <option value="pt">Português</option>
+            </select>
+          </li>
+          <li><a href="index.html#security" data-i18n="nav.security">Security</a></li>
+          <li><a href="index.html#developers" data-i18n="nav.developers">Developers</a></li>
+          <li><a href="docs.html" aria-current="page" data-i18n="nav.docs">Docs</a></li>
+          <li><a class="btn btn-solid btn-sm" href="download.html" data-i18n="nav.download">Download</a></li>
         </ul>
       </nav>
     </div>
@@ -192,38 +201,38 @@ cargo build --release --locked --features reproduce
             <img src="assets/img/kepler-logo.png" alt="" />
             <span class="brand-name">Kepler</span>
           </a>
-          <p>An independent browser project. Built in the open, funded by people, not by ads.</p>
+          <p data-i18n="footer.tagline">An independent browser project. Built in the open, funded by people, not by ads.</p>
         </div>
         <div class="footer-col">
-          <h4>Product</h4>
+          <h4 data-i18n="footer.product">Product</h4>
           <ul>
-            <li><a href="download.html">Download</a></li>
-            <li><a href="index.html#security">Security</a></li>
-            <li><a href="index.html#developers">Developers</a></li>
-            <li><a href="docs.html#changelog">Changelog</a></li>
+            <li><a href="download.html" data-i18n="footer.download">Download</a></li>
+            <li><a href="index.html#security" data-i18n="footer.security">Security</a></li>
+            <li><a href="index.html#developers" data-i18n="footer.developers">Developers</a></li>
+            <li><a href="docs.html#changelog" data-i18n="footer.changelog">Changelog</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Project</h4>
+          <h4 data-i18n="footer.project">Project</h4>
           <ul>
-            <li><a href="docs.html">Documentation</a></li>
-            <li><a href="docs.html#build">Build from source</a></li>
-            <li><a href="docs.html#protocol">Protocol</a></li>
-            <li><a href="docs.html#disclosure">Disclosure</a></li>
+            <li><a href="docs.html" data-i18n="footer.documentation">Documentation</a></li>
+            <li><a href="docs.html#build" data-i18n="footer.build">Build from source</a></li>
+            <li><a href="docs.html#protocol" data-i18n="footer.protocol">Protocol</a></li>
+            <li><a href="docs.html#disclosure" data-i18n="footer.disclosure">Disclosure</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Community</h4>
+          <h4 data-i18n="footer.community">Community</h4>
           <ul>
-            <li><a href="#">Source repository</a></li>
-            <li><a href="#">Issue tracker</a></li>
-            <li><a href="#">Matrix channel</a></li>
-            <li><a href="#">Mailing list</a></li>
+            <li><a href="#" data-i18n="footer.source">Source repository</a></li>
+            <li><a href="#" data-i18n="footer.issues">Issue tracker</a></li>
+            <li><a href="#" data-i18n="footer.matrix">Matrix channel</a></li>
+            <li><a href="#" data-i18n="footer.mailing">Mailing list</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>KEPLER · MPL-2.0 · NO TRACKERS ON THIS PAGE</span>
+        <span data-i18n="footer.bottom">KEPLER · MPL-2.0 · NO TRACKERS ON THIS PAGE</span>
         <span id="year">2026</span>
       </div>
     </div>
@@ -233,6 +242,7 @@ cargo build --release --locked --features reproduce
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="assets/js/i18n.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>
