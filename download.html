@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Download Kepler</title>
+<meta name="description" content="Download Kepler for Linux, macOS and Windows. Signed, reproducible builds with published checksums." />
+<meta name="theme-color" content="#000000" />
+<link rel="icon" href="assets/img/favicon.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<div class="page">
+
+  <header class="site-header" id="header">
+    <div class="wrap">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <img src="assets/img/kepler-logo.png" alt="" />
+          <span class="brand-name">Kepler<sup>BETA</sup></span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">
+          <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="index.html#security">Security</a></li>
+          <li><a href="index.html#developers">Developers</a></li>
+          <li><a href="docs.html">Docs</a></li>
+          <li><a class="btn btn-solid btn-sm" href="download.html" aria-current="page">Download</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= HEAD ================= -->
+  <section class="wrap page-head">
+    <p class="eyebrow">Releases</p>
+    <h1 style="font-size:clamp(2.2rem,5.5vw,3.4rem)">Download Kepler</h1>
+    <p class="lede">
+      One binary per platform, signed and reproducible. Pick your system below, then
+      verify the checksum before you run it — the commands are at the bottom of this page.
+    </p>
+
+    <div class="notice" data-reveal>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+      <div>
+        <b>Binaries aren't wired up yet.</b>
+        This page is live but the release artifacts haven't been attached. Drop the files
+        into <code>/releases/</code> and set <code>available: true</code> in
+        <code>assets/js/downloads.js</code> (or in the Rust manifest) and every button here
+        starts working — no other changes needed.
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRIMARY ================= -->
+  <section class="wrap" style="padding-bottom:clamp(30px,5vw,54px)">
+    <div class="primary-dl" data-reveal>
+      <div>
+        <p class="build-tag" id="detectedTag">Detecting your system…</p>
+        <h2 id="primaryTitle">Kepler for your machine</h2>
+        <p id="primarySub">We'll pick the right build once we know what you're on.</p>
+      </div>
+      <div class="stack">
+        <button class="btn btn-solid" id="primaryBtn" data-dl="auto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+          <span id="primaryBtnLabel">Download</span>
+        </button>
+        <span class="build-tag" id="primaryMeta">v0.9.0 beta · pending</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ALL PLATFORMS ================= -->
+  <section class="section" style="padding-top:clamp(30px,4vw,48px)">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">All platforms</p>
+        <h2>Every build we publish.</h2>
+      </div>
+
+      <!-- Cards are rendered by assets/js/downloads.js from the release manifest -->
+      <div class="dl-grid" id="dlGrid" data-reveal></div>
+    </div>
+  </section>
+
+  <!-- ================= CHECKSUMS ================= -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Integrity</p>
+        <h2>Checksums &amp; signatures.</h2>
+        <p class="lede">
+          Published here and in the signed manifest served by the Rust release server.
+          Rows fill in automatically once artifacts are attached.
+        </p>
+      </div>
+
+      <div class="table-scroll" data-reveal>
+        <table class="table">
+          <thead>
+            <tr><th>Artifact</th><th>Size</th><th>SHA-256</th><th>Status</th></tr>
+          </thead>
+          <tbody id="sumTable"></tbody>
+        </table>
+      </div>
+
+      <div style="display:grid;gap:12px;max-width:820px;margin-top:26px" data-reveal>
+        <div class="copy-row">
+          <code>sha256sum -c kepler-0.9.0.SHA256SUMS</code>
+          <button class="btn btn-sm" data-copy="sha256sum -c kepler-0.9.0.SHA256SUMS">Copy</button>
+        </div>
+        <div class="copy-row">
+          <code>gpg --verify kepler-0.9.0.SHA256SUMS.asc</code>
+          <button class="btn btn-sm" data-copy="gpg --verify kepler-0.9.0.SHA256SUMS.asc">Copy</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SOURCE ================= -->
+  <section class="section">
+    <div class="wrap">
+      <div class="split">
+        <div class="split-copy" data-reveal>
+          <p class="eyebrow">No binary? No problem</p>
+          <h2>Build it yourself.</h2>
+          <p class="lede">
+            Kepler compiles from a clean checkout on a stock toolchain. The release you'd
+            have downloaded is byte-identical to what you get here.
+          </p>
+          <ul class="checklist">
+            <li>Rust 1.78+, a C++ toolchain, and about 11 minutes.</li>
+            <li><code>--reproduce</code> pins the toolchain and strips build paths.</li>
+            <li>Compare your digest against the published manifest.</li>
+          </ul>
+        </div>
+        <div class="split-media" data-reveal>
+          <div class="code-panel"><span class="cm"># clone and build a release binary</span>
+git clone https://example.invalid/kepler.git
+<span class="kw">cd</span> kepler
+cargo build --release --locked --features reproduce
+
+<span class="cm"># serve this website + the release manifest</span>
+cargo run -p kepler-releases -- --serve 8080 --root ./site
+
+<span class="cm"># confirm you got the same bytes we did</span>
+sha256sum target/release/kepler</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="cta">
+    <div class="wrap">
+      <p class="eyebrow" style="justify-content:center">Stay in orbit</p>
+      <h2>Release notes, without the noise.</h2>
+      <p class="lede">Security advisories and version bumps. Nothing else.</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="docs.html#changelog">Read the changelog <span class="btn-arrow" aria-hidden="true">→</span></a>
+        <a class="btn" href="docs.html#disclosure">Report a vulnerability</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img src="assets/img/kepler-logo.png" alt="" />
+            <span class="brand-name">Kepler</span>
+          </a>
+          <p>An independent browser project. Built in the open, funded by people, not by ads.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="download.html">Download</a></li>
+            <li><a href="index.html#security">Security</a></li>
+            <li><a href="index.html#developers">Developers</a></li>
+            <li><a href="docs.html#changelog">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Project</h4>
+          <ul>
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="docs.html#build">Build from source</a></li>
+            <li><a href="docs.html#protocol">Protocol</a></li>
+            <li><a href="docs.html#disclosure">Disclosure</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="#">Source repository</a></li>
+            <li><a href="#">Issue tracker</a></li>
+            <li><a href="#">Matrix channel</a></li>
+            <li><a href="#">Mailing list</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>KEPLER · MPL-2.0 · NO TRACKERS ON THIS PAGE</span>
+        <span id="year">2026</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/downloads.js" defer></script>
+</body>
+</html>
