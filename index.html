@@ -25,13 +25,13 @@
           <img src="assets/img/kepler-logo.png" alt="" />
           <span class="brand-name">Kepler<sup>BETA</sup></span>
         </a>
+        <a class="donate" href="https://buymeacoffee.com/signup" target="_blank" rel="noopener" data-i18n="nav.donate">Donate</a>
 
         <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">
           <span></span>
         </button>
 
         <ul class="nav-links" id="navLinks">
-          <li><a href="index.html" aria-current="page" data-i18n="nav.overview">Overview</a></li>
           <li class="lang-item">
             <select class="lang-select" id="langSelect" aria-label="Language">
               <option value="en">English</option>
@@ -41,6 +41,7 @@
               <option value="pt">Português</option>
             </select>
           </li>
+          <li><a href="index.html" aria-current="page" data-i18n="nav.overview">Overview</a></li>
           <li><a href="index.html#security" data-i18n="nav.security">Security</a></li>
           <li><a href="index.html#developers" data-i18n="nav.developers">Developers</a></li>
           <li><a href="docs.html" data-i18n="nav.docs">Docs</a></li>
@@ -98,78 +99,18 @@
     </div>
   </section>
 
-  <!-- ================= FEATURES ================= -->
+  <!-- ================= SCREENSHOTS ================= -->
   <section class="section" id="security">
     <div class="wrap">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow" data-i18n="why.eyebrow">Why Kepler</p>
-        <h2 data-i18n="why.title">A browser that keeps its receipts.</h2>
-        <p class="lede" data-i18n="why.lede">
-          Most browsers ask you to trust them. Kepler is built so you don't have to —
-          the guarantees are enforced by the engine, not by a privacy policy.
-        </p>
-      </div>
-
-      <div class="cards" data-reveal>
-        <article class="card">
-          <span class="card-num">01</span>
-          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
-          <h3 data-i18n="card1.title">Sealed tabs</h3>
-          <p data-i18n="card1.body">
-            Every origin gets its own sandboxed process with its own cookie jar, cache and
-            storage partition. A tracker on one site is a stranger on the next.
-          </p>
-        </article>
-
-        <article class="card">
-          <span class="card-num">02</span>
-          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9.5 12l1.8 1.8 3.6-3.6"/></svg>
-          <h3 data-i18n="card2.title">Fingerprint flattening</h3>
-          <p data-i18n="card2.body">
-            Canvas, audio, fonts, timezone and device metrics are normalised to a shared
-            profile, so a million Kepler users look like the same user.
-          </p>
-        </article>
-
-        <article class="card">
-          <span class="card-num">03</span>
-          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>
-          <h3 data-i18n="card3.title">Egress ledger</h3>
-          <p data-i18n="card3.body">
-            A live, filterable log of every outbound connection the browser makes —
-            including its own. If Kepler phones home, you'll see the row.
-          </p>
-        </article>
-
-        <article class="card">
-          <span class="card-num">04</span>
-          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/><path d="M15 4h5v5"/><path d="M20 4l-9 9"/></svg>
-          <h3 data-i18n="card4.title">Reproducible builds</h3>
-          <p data-i18n="card4.body">
-            The binary you download hashes to the same digest as the one you build from
-            source. Same commit, same bytes, no exceptions.
-          </p>
-        </article>
-
-        <article class="card">
-          <span class="card-num">05</span>
-          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l-5-6 5-6M15 6l5 6-5 6"/></svg>
-          <h3 data-i18n="card5.title">Devtools that don't lie</h3>
-          <p data-i18n="card5.body">
-            Unminified stack traces, request timing without the rounding fudge, and a
-            protocol console you can script from the terminal.
-          </p>
-        </article>
-
-        <article class="card">
-          <span class="card-num">06</span>
-          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><ellipse cx="12" cy="12" rx="10" ry="4.3" transform="rotate(-22 12 12)"/></svg>
-          <h3 data-i18n="card6.title">Orbit relays</h3>
-          <p data-i18n="card6.body">
-            Optional multi-hop routing through volunteer relays, switchable per profile,
-            so a hardened session is one keystroke away.
-          </p>
-        </article>
+      <div class="shots" data-reveal>
+        <figure class="shot shot-main">
+          <img src="assets/img/screenshot-browser.jpg" alt="Kepler browsing GitHub with the AI side panel open" width="1600" height="900" loading="lazy" />
+          <figcaption data-i18n="shots.main">Kepler with the built-in AI panel — Claude, ChatGPT, Gemini, Copilot and Perplexity one click away.</figcaption>
+        </figure>
+        <figure class="shot shot-side">
+          <img src="assets/img/screenshot-start.jpg" alt="Kepler start page in Secure browsing mode with shortcut tiles" width="900" height="881" loading="lazy" />
+          <figcaption data-i18n="shots.side">Secure browsing: private, HTTPS-only, every tracker blocked, nothing saved.</figcaption>
+        </figure>
       </div>
     </div>
   </section>

@@ -1132,3 +1132,51 @@ code {
   .lang-item { padding: 12px 0; }
   .lang-select { font-size: 0.98rem; }
 }
+
+/* Donate link -------------------------------------------------------------- */
+
+.brand { margin-right: 0; }
+
+.donate {
+  margin-right: auto;
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 13px;
+  white-space: nowrap;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.donate::before { content: "\2615\00a0"; }
+.donate:hover { color: var(--ink); border-color: var(--line-strong); }
+
+/* Screenshots -------------------------------------------------------------- */
+
+.shots {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: clamp(16px, 2.5vw, 28px);
+  align-items: center;
+}
+
+.shot { margin: 0; }
+
+.shot img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 30px 80px -30px rgba(255, 255, 255, 0.12);
+}
+
+.shot figcaption {
+  margin-top: 12px;
+  font-size: 0.86rem;
+  color: var(--ink-mute);
+}
+
+@media (max-width: 720px) {
+  .shots { grid-template-columns: 1fr; }
+  .shot-side { max-width: 420px; }
+}
