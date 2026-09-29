@@ -37,10 +37,6 @@
       "hero.yourSystem": "tu sistema",
       "hero.meta2": "Sin telemetría, nunca",
 
-      "stat1": "Puntos de telemetría",
-      "stat2": "Minutos de compilación limpia",
-      "stat3": "Motor escrito en Rust",
-      "stat4": "Auditorías independientes",
 
       "anon.eyebrow": "Anónimo por defecto",
       "anon.title": "Sin rostro. Sin nombre. Sin rastro.",
@@ -106,10 +102,6 @@
       "hero.yourSystem": "votre système",
       "hero.meta2": "Aucune télémétrie, jamais",
 
-      "stat1": "Points de télémétrie",
-      "stat2": "Minutes pour une compilation propre",
-      "stat3": "Du moteur écrit en Rust",
-      "stat4": "Audits indépendants",
 
       "anon.eyebrow": "Anonyme par défaut",
       "anon.title": "Pas de visage. Pas de nom. Pas de trace.",
@@ -175,10 +167,6 @@
       "hero.yourSystem": "dein System",
       "hero.meta2": "Keine Telemetrie, niemals",
 
-      "stat1": "Telemetrie-Endpunkte",
-      "stat2": "Minuten für einen sauberen Build",
-      "stat3": "Der Engine in Rust",
-      "stat4": "Unabhängige Audits",
 
       "anon.eyebrow": "Standardmäßig anonym",
       "anon.title": "Kein Gesicht. Kein Name. Keine Spur.",
@@ -244,10 +232,6 @@
       "hero.yourSystem": "seu sistema",
       "hero.meta2": "Sem telemetria, nunca",
 
-      "stat1": "Endpoints de telemetria",
-      "stat2": "Minutos para compilação limpa",
-      "stat3": "Do motor escrito em Rust",
-      "stat4": "Auditorias independentes",
 
       "anon.eyebrow": "Anônimo por padrão",
       "anon.title": "Sem rosto. Sem nome. Sem rastro.",
