@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kepler — Documentation</title>
+<meta name="description" content="Kepler documentation: architecture, building from source, the automation protocol, and security disclosure." />
+<meta name="theme-color" content="#000000" />
+<link rel="icon" href="assets/img/favicon.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<div class="page">
+
+  <header class="site-header" id="header">
+    <div class="wrap">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <img src="assets/img/kepler-logo.png" alt="" />
+          <span class="brand-name">Kepler<sup>BETA</sup></span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">
+          <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="index.html#security">Security</a></li>
+          <li><a href="index.html#developers">Developers</a></li>
+          <li><a href="docs.html" aria-current="page">Docs</a></li>
+          <li><a class="btn btn-solid btn-sm" href="download.html">Download</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="wrap page-head">
+    <p class="eyebrow">Documentation</p>
+    <h1 style="font-size:clamp(2.2rem,5.5vw,3.4rem)">How Kepler works.</h1>
+    <p class="lede">
+      Architecture, build instructions, the automation protocol, and how to report a
+      vulnerability. Written for people who'd rather read the implementation.
+    </p>
+  </section>
+
+  <section class="section" style="border-top:0;padding-top:clamp(20px,3vw,34px)">
+    <div class="wrap docs-layout">
+
+      <nav class="docs-nav" id="docsNav" aria-label="Documentation sections">
+        <a href="#architecture">01 · Architecture</a>
+        <a href="#build">02 · Build from source</a>
+        <a href="#protocol">03 · Protocol</a>
+        <a href="#profiles">04 · Profiles</a>
+        <a href="#changelog">05 · Changelog</a>
+        <a href="#disclosure">06 · Disclosure</a>
+      </nav>
+
+      <div>
+
+        <article class="doc-block" id="architecture" data-reveal>
+          <p class="eyebrow">01</p>
+          <h2>Architecture</h2>
+          <p>
+            Kepler runs a small trusted broker and a fleet of untrusted workers. The broker
+            owns the filesystem, the network socket and the GPU handle; nothing else does.
+            A renderer that gets compromised can ask the broker for things, and the broker
+            says no.
+          </p>
+          <div class="code-panel"><span class="cm">// process topology</span>
+kepler-broker        <span class="cm">// trusted · Rust · owns fs, net, gpu</span>
+ ├─ kepler-net       <span class="cm">// tls, dns, relay routing, egress ledger</span>
+ ├─ kepler-store     <span class="cm">// per-origin partitioned storage</span>
+ ├─ renderer[origin] <span class="cm">// sandboxed, one per origin, no syscalls</span>
+ └─ wasm-ext[id]     <span class="cm">// extensions, capability-gated</span></div>
+          <p>
+            The storage partitioner keys every cookie jar, cache entry and IndexedDB
+            database on the <em>top-level</em> origin, not the requesting one. That single
+            decision is what kills cross-site tracking rather than merely inconveniencing it.
+          </p>
+        </article>
+
+        <article class="doc-block" id="build" data-reveal>
+          <p class="eyebrow">02</p>
+          <h2>Build from source</h2>
+          <p>
+            You need Rust 1.78 or newer, a C++17 toolchain, and roughly 6&nbsp;GB of disk.
+            The <code>--locked</code> flag is not optional for a reproducible build.
+          </p>
+          <div class="code-panel">git clone https://example.invalid/kepler.git
+<span class="kw">cd</span> kepler
+rustup toolchain install 1.78.0
+cargo build --release --locked --features reproduce
+
+<span class="cm"># the binary lands here</span>
+./target/release/kepler --version</div>
+          <p>
+            To serve this website together with the signed release manifest, run the small
+            release server that lives in <code>server/</code>:
+          </p>
+          <div class="copy-row">
+            <code>cargo run -p kepler-releases -- --serve 8080 --root ./site</code>
+            <button class="btn btn-sm" data-copy="cargo run -p kepler-releases -- --serve 8080 --root ./site">Copy</button>
+          </div>
+        </article>
+
+        <article class="doc-block" id="protocol" data-reveal>
+          <p class="eyebrow">03</p>
+          <h2>Automation protocol</h2>
+          <p>
+            Kepler speaks a CDP-compatible protocol over a plain WebSocket. Start it with
+            <code>--remote-port</code> and point any existing tooling at it. The additions
+            Kepler makes are namespaced under <code>Kepler.*</code> so nothing else breaks.
+          </p>
+          <div class="table-scroll">
+            <table class="table">
+              <thead><tr><th>Method</th><th>Returns</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Kepler.egress</td><td>Request ledger</td><td>Every outbound connection for the tab, with timings.</td></tr>
+                <tr><td>Kepler.burn</td><td>void</td><td>Destroys the tab's partition and its process.</td></tr>
+                <tr><td>Kepler.relays</td><td>Hop list</td><td>Current relay path; settable per profile.</td></tr>
+                <tr><td>Kepler.fingerprint</td><td>Profile digest</td><td>What the page would see if it probed you.</td></tr>
+                <tr><td>Kepler.attest</td><td>Build info</td><td>Commit, toolchain, and the digest of the running binary.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="doc-block" id="profiles" data-reveal>
+          <p class="eyebrow">04</p>
+          <h2>Profiles</h2>
+          <p>
+            A profile is a directory. There's no opaque database, no lock file that survives
+            a crash, and nothing you can't inspect with a text editor. Copy one to clone a
+            session; delete one to make it never have happened.
+          </p>
+          <div class="code-panel">~/.config/kepler/profiles/throwaway/
+  profile.toml      <span class="cm"># relays, fingerprint mode, permissions</span>
+  origins/          <span class="cm"># one partition per top-level origin</span>
+  extensions/       <span class="cm"># wasm modules + capability manifests</span>
+  ledger.jsonl      <span class="cm"># append-only egress log</span></div>
+        </article>
+
+        <article class="doc-block" id="changelog" data-reveal>
+          <p class="eyebrow">05</p>
+          <h2>Changelog</h2>
+          <div class="table-scroll">
+            <table class="table">
+              <thead><tr><th>Version</th><th>Date</th><th>Changes</th></tr></thead>
+              <tbody>
+                <tr><td>0.9.0</td><td>2026-09-22</td><td>Public beta. Egress ledger, relay switching, reproducible release pipeline.</td></tr>
+                <tr><td>0.8.4</td><td>2026-08-30</td><td>Storage partitioner rewritten in Rust; cross-origin cache probes closed.</td></tr>
+                <tr><td>0.8.0</td><td>2026-07-11</td><td>WASM extension runtime with per-permission capability manifests.</td></tr>
+                <tr><td>0.7.2</td><td>2026-06-02</td><td>Fingerprint flattening for canvas, audio and font enumeration.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="doc-block" id="disclosure" data-reveal>
+          <p class="eyebrow">06</p>
+          <h2>Security disclosure</h2>
+          <p>
+            Report vulnerabilities privately first. We acknowledge within 72 hours, ship a
+            fix or a mitigation within 90 days, and publish the advisory with credit unless
+            you'd rather we didn't.
+          </p>
+          <ul class="checklist">
+            <li>Sandbox escapes and partition bypasses are treated as critical.</li>
+            <li>Anything that de-anonymises a relay session is critical.</li>
+            <li>Self-XSS, clickjacking on unauthenticated pages and missing headers on static docs are out of scope.</li>
+          </ul>
+          <div class="copy-row">
+            <code>security@kepler.invalid — PGP: 9F2C 4A11 8E70 D3B5</code>
+            <button class="btn btn-sm" data-copy="security@kepler.invalid">Copy</button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img src="assets/img/kepler-logo.png" alt="" />
+            <span class="brand-name">Kepler</span>
+          </a>
+          <p>An independent browser project. Built in the open, funded by people, not by ads.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="download.html">Download</a></li>
+            <li><a href="index.html#security">Security</a></li>
+            <li><a href="index.html#developers">Developers</a></li>
+            <li><a href="docs.html#changelog">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Project</h4>
+          <ul>
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="docs.html#build">Build from source</a></li>
+            <li><a href="docs.html#protocol">Protocol</a></li>
+            <li><a href="docs.html#disclosure">Disclosure</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="#">Source repository</a></li>
+            <li><a href="#">Issue tracker</a></li>
+            <li><a href="#">Matrix channel</a></li>
+            <li><a href="#">Mailing list</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>KEPLER · MPL-2.0 · NO TRACKERS ON THIS PAGE</span>
+        <span id="year">2026</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
