@@ -97,6 +97,10 @@
   <section class="section" id="security">
     <div class="wrap">
       <div class="shots" data-reveal>
+        <figure class="shot shot-side">
+          <img src="assets/img/screenshot-start.jpg" alt="Kepler start page in Secure browsing mode with shortcut tiles" width="900" height="881" loading="lazy" />
+          <figcaption data-i18n="shots.side">Secure browsing: private, HTTPS-only, every tracker blocked, nothing saved.</figcaption>
+        </figure>
         <figure class="shot shot-main">
           <img src="assets/img/screenshot-browser.jpg" alt="Kepler browsing GitHub with the AI side panel open" width="1600" height="900" loading="lazy" />
           <figcaption data-i18n="shots.main">Kepler with the built-in AI panel — Claude, ChatGPT, Gemini, Copilot and Perplexity one click away.</figcaption>
@@ -104,10 +108,6 @@
         <figure class="shot shot-mid">
           <img src="assets/img/screenshot-wiki.jpg" alt="Kepler showing a Wikipedia article on Kepler-22b in dark mode" width="1600" height="866" loading="lazy" />
           <figcaption data-i18n="shots.mid">Dark mode for every site — even Wikipedia.</figcaption>
-        </figure>
-        <figure class="shot shot-side">
-          <img src="assets/img/screenshot-start.jpg" alt="Kepler start page in Secure browsing mode with shortcut tiles" width="900" height="881" loading="lazy" />
-          <figcaption data-i18n="shots.side">Secure browsing: private, HTTPS-only, every tracker blocked, nothing saved.</figcaption>
         </figure>
       </div>
     </div>
@@ -177,88 +177,6 @@
         </div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- ================= VERIFY ================= -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow" data-i18n="verify.eyebrow">Trust, then verify</p>
-        <h2 data-i18n="verify.title">Don't take our word for it.</h2>
-        <p class="lede" data-i18n="verify.lede">
-          Every release ships with a detached signature and a build attestation. Three
-          commands and you know the binary on your disk is the one in the public log.
-        </p>
-      </div>
-
-      <div style="display:grid;gap:12px;max-width:780px" data-reveal>
-        <div class="copy-row">
-          <code>keplerctl verify ./kepler-0.9.0-linux-x86_64.tar.zst</code>
-          <button class="btn btn-sm" data-copy="keplerctl verify ./kepler-0.9.0-linux-x86_64.tar.zst" data-i18n="common.copy">Copy</button>
-        </div>
-        <div class="copy-row">
-          <code>keplerctl attest --commit HEAD --reproduce</code>
-          <button class="btn btn-sm" data-copy="keplerctl attest --commit HEAD --reproduce" data-i18n="common.copy">Copy</button>
-        </div>
-        <div class="copy-row">
-          <code>cargo run -p kepler-releases -- --serve 8080</code>
-          <button class="btn btn-sm" data-copy="cargo run -p kepler-releases -- --serve 8080" data-i18n="common.copy">Copy</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= FAQ ================= -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow" data-i18n="faq.eyebrow">Questions</p>
-        <h2 data-i18n="faq.title">The short answers.</h2>
-      </div>
-
-      <div class="faq" data-reveal>
-        <details>
-          <summary data-i18n="faq.q1">Is Kepler a fork of an existing browser?</summary>
-          <div class="answer" data-i18n="faq.a1">
-            The rendering layer started from an existing open-source engine; the network
-            stack, sandbox broker, storage partitioner and extension runtime are new and
-            written in Rust. The divergence is documented commit by commit in the docs.
-          </div>
-        </details>
-        <details>
-          <summary data-i18n="faq.q2">Does Kepler collect anything at all?</summary>
-          <div class="answer" data-i18n="faq.a2">
-            No. There is no analytics SDK, no crash pinging, no "anonymous usage" toggle
-            that defaults to on. Crash reports exist but are files on your disk that you
-            choose to attach to an issue.
-          </div>
-        </details>
-        <details>
-          <summary data-i18n="faq.q3">Will my extensions work?</summary>
-          <div class="answer" data-i18n="faq.a3">
-            Extensions using the standard WebExtensions surface generally work. Anything
-            requesting broad host permissions has to declare them in a capability manifest
-            that you approve per-permission rather than all at once.
-          </div>
-        </details>
-        <details>
-          <summary data-i18n="faq.q4">What does "reproducible" actually buy me?</summary>
-          <div class="answer" data-i18n="faq.a4">
-            It means a compromised build server can't hand you a different binary than
-            everyone else without it being immediately visible. Anyone can rebuild the
-            release and compare digests.
-          </div>
-        </details>
-        <details>
-          <summary data-i18n="faq.q5">Is the beta safe to use as a daily driver?</summary>
-          <div class="answer" data-i18n="faq.a5">
-            It's stable enough that the team uses it daily, but the extension API and the
-            profile format may still change before 1.0. Pin a version if you're scripting
-            against it.
-          </div>
-        </details>
-      </div>
     </div>
   </section>
 

@@ -1155,10 +1155,17 @@ code {
 
 .shots {
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-columns: 1fr 1.35fr;
+  grid-template-areas:
+    "side main"
+    "side mid";
   gap: clamp(16px, 2.5vw, 28px);
   align-items: center;
 }
+
+.shot-side { grid-area: side; }
+.shot-main { grid-area: main; }
+.shot-mid  { grid-area: mid; }
 
 .shot { margin: 0; }
 
@@ -1172,14 +1179,14 @@ code {
 
 .shot figcaption {
   margin-top: 12px;
+  text-align: center;
   font-size: 0.86rem;
   color: var(--ink-mute);
 }
 
 @media (max-width: 720px) {
-  .shots { grid-template-columns: 1fr; }
-  .shot-mid { order: -1; }
-  .shot-side { max-width: 420px; }
+  .shots { grid-template-columns: 1fr; grid-template-areas: "side" "main" "mid"; }
+  .shot-side { max-width: 420px; justify-self: center; }
 }
 
 /* Centered hero with product screenshot ------------------------------------ */
