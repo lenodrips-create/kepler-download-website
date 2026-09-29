@@ -1180,3 +1180,26 @@ code {
   .shots { grid-template-columns: 1fr; }
   .shot-side { max-width: 420px; }
 }
+
+/* Centered hero with product screenshot ------------------------------------ */
+
+.hero-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+.hero-copy { max-width: 760px; }
+.hero-copy .eyebrow { justify-content: center; }
+.hero .hero-actions,
+.hero .hero-meta { justify-content: center; }
+
+.hero-shot {
+  margin: clamp(40px, 7vh, 72px) auto 0;
+  max-width: 1080px;
+}
+
+.hero-shot img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 40px 120px -40px rgba(255, 255, 255, 0.18);
+}
