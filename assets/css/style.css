@@ -1140,6 +1140,7 @@ code {
 .donate {
   margin-right: auto;
   font-size: 0.8rem;
+  font-weight: 700;
   color: var(--ink-dim);
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -1148,7 +1149,6 @@ code {
   transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 
-.donate::before { content: "\2615\00a0"; }
 .donate:hover { color: var(--ink); border-color: var(--line-strong); }
 
 /* Screenshots -------------------------------------------------------------- */
