@@ -3,11 +3,11 @@
    Renders the download page from a release manifest and keeps every button
    inert until real artifacts exist.
 
-   >>> TO GO LIVE:
-   1. Put your files in /releases/ next to this site.
-   2. In MANIFEST below, set  available: true  and fill in `file`, `size`
-      and `sha256` for each build you're shipping.
-   3. That's it. Nothing else on the page needs touching.
+   Downloads are served straight from the GitHub release tagged "latest" in
+   lenodrips-create/kepler (built by that repo's Actions workflow). Clicking a
+   button starts the file download on this page — visitors never see GitHub.
+   When a new build is published, the same links serve the new files, so
+   nothing here needs editing.
 
    If the Rust release server (server/src/main.rs) is running, this script
    will prefer its live manifest at /api/releases and fall back to the
@@ -23,50 +23,61 @@
 
   /* ------------------------------------------------------------- manifest */
 
+  const RELEASE_BASE = "https://github.com/lenodrips-create/kepler/releases/download/latest/";
+  const SOURCE_URL   = "https://github.com/lenodrips-create/kepler/archive/refs/heads/main.zip";
+
+  // `files` maps an architecture to the asset name in the GitHub release.
   const MANIFEST = {
     version: "0.9.0",
     channel: "beta",
-    released: "2026-09-22",
+    released: null,
     builds: [
       {
         os: "linux",
         label: "Linux",
-        note: "glibc 2.31+ · tar.zst",
-        arches: ["x86_64", "arm64"],
-        file: null,        // e.g. "kepler-0.9.0-linux-x86_64.tar.zst"
-        size: null,        // e.g. "96.4 MB"
-        sha256: null,      // e.g. "3f1a…"
-        available: false   // <- flip to true when the artifact exists
+        note: "Ubuntu 24.04+ and Debian-based · .deb",
+        arches: ["x86_64"],
+        archLabels: { x86_64: "x86_64 (amd64)" },
+        files: { x86_64: RELEASE_BASE + "Kepler-linux-amd64.deb" },
+        size: null,
+        sha256: null,
+        available: true
       },
       {
         os: "macos",
         label: "macOS",
-        note: "13 Ventura or newer · notarised .dmg",
+        note: "Zip · drag to Applications, then right-click → Open",
         arches: ["arm64", "x86_64"],
-        file: null,
+        archLabels: { arm64: "Apple Silicon (M1–M4)", x86_64: "Intel" },
+        files: {
+          arm64:  RELEASE_BASE + "Kepler-mac-apple-silicon.zip",
+          x86_64: RELEASE_BASE + "Kepler-mac-intel.zip"
+        },
         size: null,
         sha256: null,
-        available: false
+        available: true
       },
       {
         os: "windows",
         label: "Windows",
-        note: "10 and 11 · signed .msi",
-        arches: ["x86_64", "arm64"],
-        file: null,
+        note: "Zip · extract, then run Kepler.exe",
+        arches: ["x86_64"],
+        archLabels: { x86_64: "x86_64 (64-bit)" },
+        files: { x86_64: RELEASE_BASE + "Kepler-windows.zip" },
         size: null,
         sha256: null,
-        available: false
+        available: true
       },
       {
         os: "source",
-        label: "Source tarball",
-        note: "Build it yourself · tar.gz + .asc",
+        label: "Source code",
+        note: "Build it yourself · zip",
         arches: ["any"],
-        file: null,
+        archLabels: { any: "any" },
+        files: { any: SOURCE_URL },
         size: null,
         sha256: null,
-        available: false
+        available: true
       }
     ]
   };
@@ -83,20 +94,41 @@
   /* ------------------------------------------------------------- helpers */
 
   function pendingMessage(build) {
-    return build.label + " build isn't attached yet — add the artifact and flip " +
-           "`available` to true in downloads.js.";
+    return build.label + " build isn't available yet.";
+  }
+
+  function fileFor(build, arch) {
+    return (build.files && (build.files[arch] || build.files[build.arches[0]])) || null;
+  }
+
+  function fileName(url) {
+    return url.split("/").pop();
+  }
+
+  function archLabel(build, arch) {
+    return (build.archLabels && build.archLabels[arch]) || arch;
+  }
+
+  // Browsers can't tell Apple Silicon from Intel Macs (both report "Intel"),
+  // so Macs default to Apple Silicon, the common case, and Intel is one click away.
+  function defaultArch(build, detected) {
+    if (build.os === "macos") return "arm64";
+    return build.arches.includes(detected.arch) ? detected.arch : build.arches[0];
   }
 
   function trigger(build, arch) {
-    if (!build.available || !build.file) {
+    const url = fileFor(build, arch);
+    if (!build.available || !url) {
       toast(pendingMessage(build));
       return;
     }
-    // Real artifacts live under /releases/. Nothing is fetched until then.
-    const name = build.file.replace("{arch}", arch);
+    // GitHub serves release assets as attachments, so this downloads in place
+    // and the visitor stays on this page.
+    const name = fileName(url);
     const a = document.createElement("a");
-    a.href = "releases/" + name;
+    a.href = url;
     a.download = name;
+    a.rel = "noopener";
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -115,7 +147,7 @@
       card.className = "dl-card";
       if (build.os === detected.os) card.classList.add("is-recommended");
 
-      let selected = build.arches.includes(detected.arch) ? detected.arch : build.arches[0];
+      let selected = defaultArch(build, detected);
 
       const header = document.createElement("header");
       header.innerHTML =
@@ -133,7 +165,7 @@
       status.className = "os-meta";
       status.textContent = build.available
         ? (build.size ? build.size + " · v" + manifest.version : "v" + manifest.version)
-        : "Awaiting artifact";
+        : "Coming soon";
       status.style.color = build.available ? "" : "var(--ink-faint)";
       card.appendChild(status);
 
@@ -145,12 +177,13 @@
           const chip = document.createElement("button");
           chip.className = "chip";
           chip.type = "button";
-          chip.textContent = arch;
+          chip.textContent = archLabel(build, arch);
+          chip.dataset.arch = arch;
           chip.setAttribute("aria-pressed", String(arch === selected));
           chip.addEventListener("click", () => {
             selected = arch;
             row.querySelectorAll(".chip").forEach((c) =>
-              c.setAttribute("aria-pressed", String(c.textContent === arch)));
+              c.setAttribute("aria-pressed", String(c.dataset.arch === arch)));
           });
           row.appendChild(chip);
         });
@@ -188,7 +221,8 @@
     const build = manifest.builds.find((b) => b.os === detected.os);
     const osName = OS_NAMES[detected.os] || "your system";
 
-    if (tag)   tag.textContent = "Detected · " + osName + " · " + detected.arch;
+    if (tag)   tag.textContent = "Detected · " + osName +
+                                 (detected.os === "macos" ? "" : " · " + detected.arch);
     if (title) title.textContent = "Kepler for " + osName;
 
     if (!build) {
@@ -202,17 +236,18 @@
 
     if (sub) {
       sub.textContent = build.available
-        ? build.note + " · " + (build.size || "size pending")
+        ? build.note + (build.size ? " · " + build.size : "") +
+          (build.os === "macos" ? " · Apple Silicon build. Older Intel Mac? Pick Intel in the list below." : "")
         : "The " + osName + " artifact hasn't been attached yet. Everything else on this page is live.";
     }
 
     if (label) label.textContent = build.available ? "Download for " + osName : "Not yet available";
     if (meta)  meta.textContent = "v" + manifest.version + " " + manifest.channel +
-                                  " · released " + manifest.released +
+                                  (manifest.released ? " · released " + manifest.released : "") +
                                   (build.available ? "" : " · pending");
     if (!build.available) btn.classList.add("is-locked");
 
-    const arch = build.arches.includes(detected.arch) ? detected.arch : build.arches[0];
+    const arch = defaultArch(build, detected);
     btn.addEventListener("click", () => trigger(build, arch));
   }
 
@@ -227,9 +262,8 @@
       build.arches.forEach((arch) => {
         const tr = document.createElement("tr");
 
-        const name = build.file
-          ? build.file.replace("{arch}", arch)
-          : "kepler-" + manifest.version + "-" + build.os + "-" + arch;
+        const url  = fileFor(build, arch);
+        const name = url ? fileName(url) : "kepler-" + manifest.version + "-" + build.os + "-" + arch;
 
         tr.innerHTML =
           "<td>" + name + "</td>" +
