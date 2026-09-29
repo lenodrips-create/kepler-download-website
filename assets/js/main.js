@@ -301,8 +301,9 @@
           document.body.removeChild(ta);
         }
         const original = btn.textContent;
-        btn.textContent = "Copied";
-        toast("Copied to clipboard");
+        const t = window.Kepler.t || ((k) => ({ "common.copied": "Copied", "common.copiedToast": "Copied to clipboard" })[k]);
+        btn.textContent = t("common.copied");
+        toast(t("common.copiedToast"));
         setTimeout(() => { btn.textContent = original; }, 1600);
       } catch (err) {
         toast("Couldn't copy — select the text instead");
@@ -340,7 +341,11 @@
     if (!label) return;
     const names = { linux: "Linux", macos: "macOS", windows: "Windows", android: "Android" };
     const p = detectPlatform();
-    label.textContent = "Download for " + (names[p.os] || "your system");
+    // i18n.js fills in the translated "Download for {os}" template.
+    label.dataset.os = names[p.os] || "";
+    label.dataset.i18n = "hero.downloadFor";
+    if (window.Kepler.i18n) window.Kepler.i18n.apply();
+    else label.textContent = "Download for " + (names[p.os] || "your system");
   }
 
   function cardGlow() {

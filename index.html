@@ -31,11 +31,20 @@
         </button>
 
         <ul class="nav-links" id="navLinks">
-          <li><a href="index.html" aria-current="page">Overview</a></li>
-          <li><a href="index.html#security">Security</a></li>
-          <li><a href="index.html#developers">Developers</a></li>
-          <li><a href="docs.html">Docs</a></li>
-          <li><a class="btn btn-solid btn-sm" href="download.html">Download</a></li>
+          <li><a href="index.html" aria-current="page" data-i18n="nav.overview">Overview</a></li>
+          <li class="lang-item">
+            <select class="lang-select" id="langSelect" aria-label="Language">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+              <option value="pt">Português</option>
+            </select>
+          </li>
+          <li><a href="index.html#security" data-i18n="nav.security">Security</a></li>
+          <li><a href="index.html#developers" data-i18n="nav.developers">Developers</a></li>
+          <li><a href="docs.html" data-i18n="nav.docs">Docs</a></li>
+          <li><a class="btn btn-solid btn-sm" href="download.html" data-i18n="nav.download">Download</a></li>
         </ul>
       </nav>
     </div>
@@ -45,9 +54,9 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Open source · Audited · v0.9 beta</p>
-        <h1>Browse dark.<br /><span class="thin">Ship clean.</span></h1>
-        <p class="lede">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Open source · Audited · v0.9 beta</p>
+        <h1 data-i18n="hero.title">Browse dark.<br /><span class="thin">Ship clean.</span></h1>
+        <p class="lede" data-i18n="hero.lede">
           Kepler is a browser for people who read the source. Every tab runs in its own
           sealed process, every request is accountable, and the whole thing is a
           reproducible build you can rebuild yourself in about eleven minutes.
@@ -55,15 +64,14 @@
 
         <div class="hero-actions">
           <a class="btn btn-solid" href="download.html" id="heroDownload">
-            <span id="heroDownloadLabel">Download Kepler</span>
+            <span id="heroDownloadLabel" data-i18n="hero.download">Download Kepler</span>
             <span class="btn-arrow" aria-hidden="true">→</span>
           </a>
-          <a class="btn" href="index.html#developers">See what's under the hood</a>
         </div>
 
         <div class="hero-meta">
           <span><i class="dot"></i> Linux · macOS · Windows</span>
-          <span><i class="dot"></i> No telemetry, ever</span>
+          <span><i class="dot"></i> <span data-i18n="hero.meta2">No telemetry, ever</span></span>
           <span><i class="dot"></i> MPL-2.0</span>
         </div>
       </div>
@@ -94,9 +102,9 @@
   <section class="section" id="security">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Why Kepler</p>
-        <h2>A browser that keeps its receipts.</h2>
-        <p class="lede">
+        <p class="eyebrow" data-i18n="why.eyebrow">Why Kepler</p>
+        <h2 data-i18n="why.title">A browser that keeps its receipts.</h2>
+        <p class="lede" data-i18n="why.lede">
           Most browsers ask you to trust them. Kepler is built so you don't have to —
           the guarantees are enforced by the engine, not by a privacy policy.
         </p>
@@ -106,8 +114,8 @@
         <article class="card">
           <span class="card-num">01</span>
           <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
-          <h3>Sealed tabs</h3>
-          <p>
+          <h3 data-i18n="card1.title">Sealed tabs</h3>
+          <p data-i18n="card1.body">
             Every origin gets its own sandboxed process with its own cookie jar, cache and
             storage partition. A tracker on one site is a stranger on the next.
           </p>
@@ -116,8 +124,8 @@
         <article class="card">
           <span class="card-num">02</span>
           <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9.5 12l1.8 1.8 3.6-3.6"/></svg>
-          <h3>Fingerprint flattening</h3>
-          <p>
+          <h3 data-i18n="card2.title">Fingerprint flattening</h3>
+          <p data-i18n="card2.body">
             Canvas, audio, fonts, timezone and device metrics are normalised to a shared
             profile, so a million Kepler users look like the same user.
           </p>
@@ -126,8 +134,8 @@
         <article class="card">
           <span class="card-num">03</span>
           <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>
-          <h3>Egress ledger</h3>
-          <p>
+          <h3 data-i18n="card3.title">Egress ledger</h3>
+          <p data-i18n="card3.body">
             A live, filterable log of every outbound connection the browser makes —
             including its own. If Kepler phones home, you'll see the row.
           </p>
@@ -136,8 +144,8 @@
         <article class="card">
           <span class="card-num">04</span>
           <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/><path d="M15 4h5v5"/><path d="M20 4l-9 9"/></svg>
-          <h3>Reproducible builds</h3>
-          <p>
+          <h3 data-i18n="card4.title">Reproducible builds</h3>
+          <p data-i18n="card4.body">
             The binary you download hashes to the same digest as the one you build from
             source. Same commit, same bytes, no exceptions.
           </p>
@@ -146,8 +154,8 @@
         <article class="card">
           <span class="card-num">05</span>
           <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l-5-6 5-6M15 6l5 6-5 6"/></svg>
-          <h3>Devtools that don't lie</h3>
-          <p>
+          <h3 data-i18n="card5.title">Devtools that don't lie</h3>
+          <p data-i18n="card5.body">
             Unminified stack traces, request timing without the rounding fudge, and a
             protocol console you can script from the terminal.
           </p>
@@ -156,8 +164,8 @@
         <article class="card">
           <span class="card-num">06</span>
           <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><ellipse cx="12" cy="12" rx="10" ry="4.3" transform="rotate(-22 12 12)"/></svg>
-          <h3>Orbit relays</h3>
-          <p>
+          <h3 data-i18n="card6.title">Orbit relays</h3>
+          <p data-i18n="card6.body">
             Optional multi-hop routing through volunteer relays, switchable per profile,
             so a hardened session is one keystroke away.
           </p>
@@ -170,10 +178,10 @@
   <section class="section" style="padding-block:0;border-top:0">
     <div class="wrap">
       <div class="stats" data-reveal>
-        <div class="stat"><b data-count="0">0</b><span>Telemetry endpoints</span></div>
-        <div class="stat"><b data-count="11">0</b><span>Minute clean build</span></div>
-        <div class="stat"><b data-count="94" data-suffix="%">0</b><span>Engine written in Rust</span></div>
-        <div class="stat"><b data-count="3" data-suffix="×">0</b><span>Independent audits</span></div>
+        <div class="stat"><b data-count="0">0</b><span data-i18n="stat1">Telemetry endpoints</span></div>
+        <div class="stat"><b data-count="11">0</b><span data-i18n="stat2">Minute clean build</span></div>
+        <div class="stat"><b data-count="94" data-suffix="%">0</b><span data-i18n="stat3">Engine written in Rust</span></div>
+        <div class="stat"><b data-count="3" data-suffix="×">0</b><span data-i18n="stat4">Independent audits</span></div>
       </div>
     </div>
   </section>
@@ -184,71 +192,49 @@
 
       <div class="split">
         <div class="split-copy" data-reveal>
-          <p class="eyebrow">For developers</p>
-          <h2>Scriptable from the first keystroke.</h2>
-          <p class="lede">
-            Kepler exposes the same protocol its own devtools use. Drive it from a shell
-            script, a test runner, or a language server — no headless fork, no patched build.
+          <p class="eyebrow" data-i18n="anon.eyebrow">Anonymous by default</p>
+          <h2 data-i18n="anon.title">No face. No name. No trail.</h2>
+          <p class="lede" data-i18n="anon.lede">
+            Like a mask in a crowd, Kepler makes you indistinguishable. Fingerprint
+            flattening, sealed tabs and optional orbit relays mean the sites you visit
+            see a Kepler user — never you.
           </p>
           <ul class="checklist">
-            <li>A stable CDP-compatible socket on a port you choose.</li>
-            <li>Profiles as plain directories you can commit, diff and throw away.</li>
-            <li>Extensions run in WASM with a capability manifest you approve line by line.</li>
-            <li>Headless and headed share one binary and one config file.</li>
+            <li data-i18n="anon.li1">Every Kepler user presents the same fingerprint — canvas, fonts, timezone and screen.</li>
+            <li data-i18n="anon.li2">Cookies and storage die with the tab unless you say otherwise.</li>
+            <li data-i18n="anon.li3">Orbit relays hide your IP address behind three volunteer hops.</li>
+            <li data-i18n="anon.li4">No account, no sign-in, no sync server that knows who you are.</li>
           </ul>
         </div>
 
         <div class="split-media" data-reveal>
-          <div class="code-panel"><span class="cm">// drive a hardened session from node</span>
-<span class="kw">import</span> { connect } <span class="kw">from</span> <span class="str">"kepler/protocol"</span>;
-
-<span class="kw">const</span> kep = <span class="kw">await</span> connect({ port: <span class="str">9422</span> });
-<span class="kw">const</span> tab = <span class="kw">await</span> kep.newTab({
-  profile:   <span class="str">"throwaway"</span>,
-  relays:    <span class="str">3</span>,
-  fingerprint: <span class="str">"flat"</span>
-});
-
-<span class="kw">await</span> tab.goto(<span class="str">"https://example.dev"</span>);
-<span class="kw">const</span> ledger = <span class="kw">await</span> tab.egress();
-
-<span class="cm">// every byte that left the machine</span>
-console.table(ledger.requests);
-<span class="kw">await</span> tab.burn();</div>
+          <figure class="split-art">
+            <img class="art-mask" src="assets/img/mask.png" alt="A white mask on a black background, symbolising anonymity" width="456" height="552" loading="lazy" />
+          </figure>
         </div>
       </div>
 
       <div class="split flip">
         <div class="split-copy" data-reveal>
-          <p class="eyebrow">Under the hood</p>
-          <h2>Rust where it counts.</h2>
-          <p class="lede">
-            Parsers, the network stack, the sandbox broker and the storage partitioner are
-            all memory-safe Rust. The classes of bug that produce most browser CVEs simply
-            aren't expressible there.
+          <p class="eyebrow" data-i18n="launch.eyebrow">Built for liftoff</p>
+          <h2 data-i18n="launch.title">Engineered like a launch vehicle.</h2>
+          <p class="lede" data-i18n="launch.lede">
+            Rockets don't get a second try, so every stage is tested before it flies.
+            Kepler is built the same way: a Rust engine that starts cold in under a
+            second, and a release pipeline where nothing ships until it's verified.
           </p>
           <ul class="checklist">
-            <li>No <code>unsafe</code> outside 400 audited, documented lines.</li>
-            <li>Every parser is fuzzed continuously in CI against a shared corpus.</li>
-            <li>The release manifest is signed and served by a 300-line Rust binary.</li>
+            <li data-i18n="launch.li1">Cold start in under a second, even with a hardened profile.</li>
+            <li data-i18n="launch.li2">Memory-safe Rust in the parsers, network stack and sandbox broker.</li>
+            <li data-i18n="launch.li3">Every parser is fuzzed continuously before a release leaves the pad.</li>
+            <li data-i18n="launch.li4">Signed, reproducible builds — same commit, same bytes, every launch.</li>
           </ul>
         </div>
 
         <div class="split-media" data-reveal>
-          <div class="code-panel"><span class="cm">// server/src/releases.rs — the manifest Kepler serves</span>
-<span class="kw">pub struct</span> Release {
-    <span class="kw">pub</span> version:   String,
-    <span class="kw">pub</span> platform:  Platform,
-    <span class="kw">pub</span> arch:      Arch,
-    <span class="kw">pub</span> sha256:    <span class="kw">Option</span>&lt;String&gt;,
-    <span class="kw">pub</span> available: <span class="kw">bool</span>,
-}
-
-<span class="kw">impl</span> Release {
-    <span class="kw">pub fn</span> is_downloadable(&amp;<span class="kw">self</span>) -&gt; <span class="kw">bool</span> {
-        <span class="kw">self</span>.available &amp;&amp; <span class="kw">self</span>.sha256.is_some()
-    }
-}</div>
+          <figure class="split-art">
+            <img class="art-rocket" src="assets/img/rocket.png" alt="A rocket lifting off with its engine lit" width="74" height="784" loading="lazy" />
+          </figure>
         </div>
       </div>
 
@@ -259,9 +245,9 @@ console.table(ledger.requests);
   <section class="section">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Trust, then verify</p>
-        <h2>Don't take our word for it.</h2>
-        <p class="lede">
+        <p class="eyebrow" data-i18n="verify.eyebrow">Trust, then verify</p>
+        <h2 data-i18n="verify.title">Don't take our word for it.</h2>
+        <p class="lede" data-i18n="verify.lede">
           Every release ships with a detached signature and a build attestation. Three
           commands and you know the binary on your disk is the one in the public log.
         </p>
@@ -270,15 +256,15 @@ console.table(ledger.requests);
       <div style="display:grid;gap:12px;max-width:780px" data-reveal>
         <div class="copy-row">
           <code>keplerctl verify ./kepler-0.9.0-linux-x86_64.tar.zst</code>
-          <button class="btn btn-sm" data-copy="keplerctl verify ./kepler-0.9.0-linux-x86_64.tar.zst">Copy</button>
+          <button class="btn btn-sm" data-copy="keplerctl verify ./kepler-0.9.0-linux-x86_64.tar.zst" data-i18n="common.copy">Copy</button>
         </div>
         <div class="copy-row">
           <code>keplerctl attest --commit HEAD --reproduce</code>
-          <button class="btn btn-sm" data-copy="keplerctl attest --commit HEAD --reproduce">Copy</button>
+          <button class="btn btn-sm" data-copy="keplerctl attest --commit HEAD --reproduce" data-i18n="common.copy">Copy</button>
         </div>
         <div class="copy-row">
           <code>cargo run -p kepler-releases -- --serve 8080</code>
-          <button class="btn btn-sm" data-copy="cargo run -p kepler-releases -- --serve 8080">Copy</button>
+          <button class="btn btn-sm" data-copy="cargo run -p kepler-releases -- --serve 8080" data-i18n="common.copy">Copy</button>
         </div>
       </div>
     </div>
@@ -288,46 +274,46 @@ console.table(ledger.requests);
   <section class="section">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Questions</p>
-        <h2>The short answers.</h2>
+        <p class="eyebrow" data-i18n="faq.eyebrow">Questions</p>
+        <h2 data-i18n="faq.title">The short answers.</h2>
       </div>
 
       <div class="faq" data-reveal>
         <details>
-          <summary>Is Kepler a fork of an existing browser?</summary>
-          <div class="answer">
+          <summary data-i18n="faq.q1">Is Kepler a fork of an existing browser?</summary>
+          <div class="answer" data-i18n="faq.a1">
             The rendering layer started from an existing open-source engine; the network
             stack, sandbox broker, storage partitioner and extension runtime are new and
             written in Rust. The divergence is documented commit by commit in the docs.
           </div>
         </details>
         <details>
-          <summary>Does Kepler collect anything at all?</summary>
-          <div class="answer">
+          <summary data-i18n="faq.q2">Does Kepler collect anything at all?</summary>
+          <div class="answer" data-i18n="faq.a2">
             No. There is no analytics SDK, no crash pinging, no "anonymous usage" toggle
             that defaults to on. Crash reports exist but are files on your disk that you
             choose to attach to an issue.
           </div>
         </details>
         <details>
-          <summary>Will my extensions work?</summary>
-          <div class="answer">
+          <summary data-i18n="faq.q3">Will my extensions work?</summary>
+          <div class="answer" data-i18n="faq.a3">
             Extensions using the standard WebExtensions surface generally work. Anything
             requesting broad host permissions has to declare them in a capability manifest
             that you approve per-permission rather than all at once.
           </div>
         </details>
         <details>
-          <summary>What does "reproducible" actually buy me?</summary>
-          <div class="answer">
+          <summary data-i18n="faq.q4">What does "reproducible" actually buy me?</summary>
+          <div class="answer" data-i18n="faq.a4">
             It means a compromised build server can't hand you a different binary than
             everyone else without it being immediately visible. Anyone can rebuild the
             release and compare digests.
           </div>
         </details>
         <details>
-          <summary>Is the beta safe to use as a daily driver?</summary>
-          <div class="answer">
+          <summary data-i18n="faq.q5">Is the beta safe to use as a daily driver?</summary>
+          <div class="answer" data-i18n="faq.a5">
             It's stable enough that the team uses it daily, but the extension API and the
             profile format may still change before 1.0. Pin a version if you're scripting
             against it.
@@ -340,12 +326,12 @@ console.table(ledger.requests);
   <!-- ================= CTA ================= -->
   <section class="cta">
     <div class="wrap">
-      <p class="eyebrow" style="justify-content:center">Ready when you are</p>
-      <h2>Point it at the dark and go.</h2>
-      <p class="lede">Free, open source, and quiet by default.</p>
+      <p class="eyebrow" style="justify-content:center" data-i18n="cta.eyebrow">Ready when you are</p>
+      <h2 data-i18n="cta.title">Point it at the dark and go.</h2>
+      <p class="lede" data-i18n="cta.lede">Free, open source, and quiet by default.</p>
       <div class="hero-actions">
-        <a class="btn btn-solid" href="download.html">Get Kepler <span class="btn-arrow" aria-hidden="true">→</span></a>
-        <a class="btn" href="docs.html">Read the docs</a>
+        <a class="btn btn-solid" href="download.html"><span data-i18n="cta.get">Get Kepler</span> <span class="btn-arrow" aria-hidden="true">→</span></a>
+        <a class="btn" href="docs.html" data-i18n="cta.docs">Read the docs</a>
       </div>
     </div>
   </section>
@@ -359,42 +345,42 @@ console.table(ledger.requests);
             <img src="assets/img/kepler-logo.png" alt="" />
             <span class="brand-name">Kepler</span>
           </a>
-          <p>An independent browser project. Built in the open, funded by people, not by ads.</p>
+          <p data-i18n="footer.tagline">An independent browser project. Built in the open, funded by people, not by ads.</p>
         </div>
 
         <div class="footer-col">
-          <h4>Product</h4>
+          <h4 data-i18n="footer.product">Product</h4>
           <ul>
-            <li><a href="download.html">Download</a></li>
-            <li><a href="index.html#security">Security</a></li>
-            <li><a href="index.html#developers">Developers</a></li>
-            <li><a href="docs.html#changelog">Changelog</a></li>
+            <li><a href="download.html" data-i18n="footer.download">Download</a></li>
+            <li><a href="index.html#security" data-i18n="footer.security">Security</a></li>
+            <li><a href="index.html#developers" data-i18n="footer.developers">Developers</a></li>
+            <li><a href="docs.html#changelog" data-i18n="footer.changelog">Changelog</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Project</h4>
+          <h4 data-i18n="footer.project">Project</h4>
           <ul>
-            <li><a href="docs.html">Documentation</a></li>
-            <li><a href="docs.html#build">Build from source</a></li>
-            <li><a href="docs.html#protocol">Protocol</a></li>
-            <li><a href="docs.html#disclosure">Disclosure</a></li>
+            <li><a href="docs.html" data-i18n="footer.documentation">Documentation</a></li>
+            <li><a href="docs.html#build" data-i18n="footer.build">Build from source</a></li>
+            <li><a href="docs.html#protocol" data-i18n="footer.protocol">Protocol</a></li>
+            <li><a href="docs.html#disclosure" data-i18n="footer.disclosure">Disclosure</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Community</h4>
+          <h4 data-i18n="footer.community">Community</h4>
           <ul>
-            <li><a href="#">Source repository</a></li>
-            <li><a href="#">Issue tracker</a></li>
-            <li><a href="#">Matrix channel</a></li>
-            <li><a href="#">Mailing list</a></li>
+            <li><a href="#" data-i18n="footer.source">Source repository</a></li>
+            <li><a href="#" data-i18n="footer.issues">Issue tracker</a></li>
+            <li><a href="#" data-i18n="footer.matrix">Matrix channel</a></li>
+            <li><a href="#" data-i18n="footer.mailing">Mailing list</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span>KEPLER · MPL-2.0 · NO TRACKERS ON THIS PAGE</span>
+        <span data-i18n="footer.bottom">KEPLER · MPL-2.0 · NO TRACKERS ON THIS PAGE</span>
         <span id="year">2026</span>
       </div>
     </div>
@@ -402,6 +388,7 @@ console.table(ledger.requests);
 
 </div>
 
+<script src="assets/js/i18n.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>
