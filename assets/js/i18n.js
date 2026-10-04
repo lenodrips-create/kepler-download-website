@@ -54,6 +54,10 @@
       "launch.li3": "Cada analizador se somete a fuzzing continuo antes de que una versión deje la plataforma.",
       "launch.li4": "Compilaciones firmadas y reproducibles: mismo commit, mismos bytes, en cada lanzamiento.",
 
+      "spread.title": "No dejes <span class=\"opacity-60\">ningún</span> rastro.",
+      "spread.sub": "Pestañas selladas, una huella aplanada y una compilación que puedes verificar byte a byte.",
+      "spread.hint": "Desplázate",
+
       "common.copied": "Copiado",
       "common.copiedToast": "Copiado al portapapeles",
 
@@ -118,6 +122,10 @@
       "launch.li2": "Du Rust sûr en mémoire dans les analyseurs, la pile réseau et le courtier du bac à sable.",
       "launch.li3": "Chaque analyseur est soumis à du fuzzing continu avant qu'une version ne quitte le pas de tir.",
       "launch.li4": "Compilations signées et reproductibles : même commit, mêmes octets, à chaque lancement.",
+
+      "spread.title": "Ne laissez <span class=\"opacity-60\">aucune</span> trace.",
+      "spread.sub": "Des onglets scellés, une empreinte aplanie et une compilation vérifiable octet par octet.",
+      "spread.hint": "Défiler",
 
       "common.copied": "Copié",
       "common.copiedToast": "Copié dans le presse-papiers",
@@ -184,6 +192,10 @@
       "launch.li3": "Jeder Parser wird kontinuierlich gefuzzt, bevor ein Release die Startrampe verlässt.",
       "launch.li4": "Signierte, reproduzierbare Builds – gleicher Commit, gleiche Bytes, bei jedem Start.",
 
+      "spread.title": "Hinterlasse <span class=\"opacity-60\">keine</span> Spuren.",
+      "spread.sub": "Versiegelte Tabs, ein abgeflachter Fingerabdruck und ein Build, den du Byte für Byte prüfen kannst.",
+      "spread.hint": "Scrollen",
+
       "common.copied": "Kopiert",
       "common.copiedToast": "In die Zwischenablage kopiert",
 
@@ -248,6 +260,10 @@
       "launch.li2": "Rust com segurança de memória nos analisadores, na pilha de rede e no intermediário do sandbox.",
       "launch.li3": "Cada analisador passa por fuzzing contínuo antes que uma versão deixe a plataforma.",
       "launch.li4": "Compilações assinadas e reproduzíveis — mesmo commit, mesmos bytes, a cada lançamento.",
+
+      "spread.title": "Não deixe <span class=\"opacity-60\">nenhum</span> rastro.",
+      "spread.sub": "Abas seladas, uma impressão digital achatada e uma compilação que você pode verificar byte a byte.",
+      "spread.hint": "Rolar",
 
       "common.copied": "Copiado",
       "common.copiedToast": "Copiado para a área de transferência",
@@ -323,6 +339,8 @@
     current = supported.includes(lang) ? lang : "en";
     save(current);
     apply();
+    // Let React islands (assets/react) re-read their strings.
+    document.dispatchEvent(new CustomEvent("kepler:lang", { detail: current }));
   }
 
   window.Kepler = window.Kepler || {};

@@ -16,6 +16,9 @@ kepler/
 │   ├── js/main.js          Starfield, nav, reveals, counters, terminal, clipboard
 │   ├── js/downloads.js     Renders the download page from the release manifest
 │   └── img/                Logo (transparent), favicon, original upload
+│   ├── react/              Built React islands (generated from web/, committed)
+│   └── img/spread/         Card images for the scroll "stack spread" section
+├── web/                    React + TypeScript + Tailwind v4 source (shadcn layout)
 ├── releases/               Drop your binaries here
 └── server/                 Rust release server
     ├── Cargo.toml
@@ -42,6 +45,32 @@ cargo run -- --help
 cargo test                 # 6 tests: path traversal, decoding, manifest safety
 ```
 
+## React islands (`web/`)
+
+The pages stay plain HTML. Interactive pieces that need React live in `web/`,
+a Vite + React + TypeScript + Tailwind v4 project laid out the way the shadcn
+CLI expects (`components.json`, `@/` → `web/src`, components in
+`src/components/ui`). It builds to `assets/react/islands.{js,css}`, which
+`index.html` loads; each island mounts into a `<div data-island="name">`.
+
+```bash
+cd web
+npm install
+npm run dev     # isolated dev page at http://localhost:5173
+npm run build   # typecheck + rebuild assets/react/ — commit the output
+npx shadcn@latest add button   # shadcn components land in src/components/ui
+```
+
+The built files are committed so the site still deploys with no build step.
+Tailwind's preflight reset is left out on purpose so it can't restyle the
+static pages. Island text goes through `assets/js/i18n.js` (`spread.*` keys).
+
+Current islands:
+
+- `stack-spread` — `src/components/ui/stack-spread.tsx` (from Hyperiux Vault,
+  uses `motion`): a stack of cards that scatters across the screen as you
+  scroll. `src/islands/kepler-spread.tsx` gives it Kepler's imagery and copy.
+
 ## Turning downloads on
 
 Nothing downloads right now — by design. Every button shows
@@ -67,7 +96,8 @@ When the Rust server is running, `downloads.js` prefers its live
 
 ## Notes
 
-- No trackers, no analytics, no third-party scripts except Google Fonts.
+- No trackers, no analytics, no third-party scripts except Google Fonts. React
+  islands are bundled locally and their images are served from `assets/img/`.
 - Respects `prefers-reduced-motion` — starfield twinkle, typing and counters all
   settle to static.
 - The server refuses `..` in paths, caps request sizes, and sets `nosniff`,
