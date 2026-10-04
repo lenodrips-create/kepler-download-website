@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kepler — the browser that makes you disappear</title>
+<meta name="description" content="Kepler is a private, open-source browser. Sealed tabs, no telemetry, every tracker blocked." />
+<meta name="theme-color" content="#1c56dc" />
+<link rel="icon" href="assets/img/favicon.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/cine.css" />
+</head>
+<body class="cine" data-tone="light-on-dark">
+
+<!-- ================= HEADER ================= -->
+<header class="c-header">
+  <a class="c-logo" href="preview.html" aria-label="Kepler home">
+    <img src="assets/img/kepler-logo.png" alt="" />
+  </a>
+  <div class="c-header-right">
+    <select class="c-lang" id="langSelect" aria-label="Language">
+      <option value="en">EN</option>
+      <option value="es">ES</option>
+      <option value="fr">FR</option>
+      <option value="de">DE</option>
+      <option value="pt">PT</option>
+    </select>
+    <a class="c-link" href="https://buymeacoffee.com/signup" target="_blank" rel="noopener" data-i18n="nav.donate">Donate</a>
+    <a class="c-pill" href="download.html"><span data-i18n="nav.download">Download</span> <span aria-hidden="true">→</span></a>
+  </div>
+</header>
+
+<!-- Scene progress (left edge) -->
+<nav class="c-dots" aria-label="Sections"></nav>
+
+<!-- ================= STAGE ================= -->
+<main class="c-stage" id="stage">
+
+  <!-- 0 · Hero -->
+  <section class="scene tone-dark" data-bg="#1c56dc" data-label="Kepler">
+    <div class="scene-art art-right">
+      <img class="art-float art-mask-hero" src="assets/img/mask.png" alt="A white mask, symbolising anonymity" width="456" height="552" />
+    </div>
+    <div class="scene-copy copy-left">
+      <h1 class="c-h" data-words>Kepler makes you disappear.</h1>
+      <p class="c-sub" data-words>Not a browser that watches you. A browser that forgets you.</p>
+      <div class="c-actions">
+        <a class="c-pill c-pill-light" href="download.html">Download Kepler <span aria-hidden="true">→</span></a>
+      </div>
+      <p class="c-small">Sealed tabs, flattened fingerprints and zero telemetry — so the web sees a Kepler user, never you. Free and open source for Windows, macOS and Linux.</p>
+    </div>
+  </section>
+
+  <!-- 1 · Secure browsing -->
+  <section class="scene tone-light" data-bg="#f4f2ec" data-label="Private">
+    <div class="scene-art art-right">
+      <img class="art-shot art-tilt" src="assets/img/screenshot-start.jpg" alt="Kepler start page in Secure browsing mode" width="900" height="881" />
+    </div>
+    <div class="scene-copy copy-left">
+      <h2 class="c-h" data-words>Every tracker blocked. Nothing saved.</h2>
+      <p class="c-small">Flip on Secure browsing and Kepler goes HTTPS-only, blocks every tracker it sees and keeps no history, cookies or cache. Close the window and it never happened.</p>
+      <span class="c-tag">Secure browsing</span>
+    </div>
+  </section>
+
+  <!-- 2 · Speed -->
+  <section class="scene tone-dark" data-bg="#1c56dc" data-label="Fast">
+    <div class="scene-art art-center">
+      <img class="art-rocket-rise" src="assets/img/rocket.png" alt="A rocket lifting off" width="74" height="784" />
+    </div>
+    <div class="scene-copy copy-left copy-top">
+      <h2 class="c-h" data-words>Built for liftoff.</h2>
+      <p class="c-small">Rockets don't get a second try, so every stage is tested before it flies. Kepler is built the same way — a fast engine and a release pipeline where nothing ships until it's checked.</p>
+    </div>
+    <div class="scene-copy copy-right copy-bottom">
+      <p class="c-small">Every build is made automatically from the public source, for Windows, macOS and Linux.</p>
+    </div>
+  </section>
+
+  <!-- 3 · AI panel -->
+  <section class="scene tone-light" data-bg="#efe7d8" data-label="AI">
+    <div class="scene-art art-left">
+      <figure class="art-frame">
+        <img src="assets/img/screenshot-browser.jpg" alt="Kepler with the AI side panel open" width="1600" height="900" />
+      </figure>
+    </div>
+    <div class="scene-copy copy-right">
+      <h2 class="c-h" data-words>Five AIs. One click away.</h2>
+      <p class="c-small">Claude, ChatGPT, Gemini, Copilot and Perplexity live in a side panel next to the page you're reading. Ask about it without opening another tab.</p>
+      <span class="c-tag">Built-in AI panel</span>
+    </div>
+  </section>
+
+  <!-- 4 · Dark mode -->
+  <section class="scene tone-dark" data-bg="#1c56dc" data-label="Dark">
+    <div class="scene-art art-right">
+      <figure class="art-frame art-frame-dark">
+        <img src="assets/img/screenshot-wiki.jpg" alt="A Wikipedia article in dark mode inside Kepler" width="1600" height="866" />
+      </figure>
+    </div>
+    <div class="scene-copy copy-left copy-top">
+      <h2 class="c-h" data-words>We say no, so you never have to.</h2>
+    </div>
+    <div class="scene-copy copy-left copy-bottom">
+      <p class="c-small">No to trackers. No to telemetry. No to sites that blind you at midnight — Kepler can render every page dark, even Wikipedia.</p>
+    </div>
+  </section>
+
+  <!-- 5 · Final CTA -->
+  <section class="scene tone-light scene-final" data-bg="#f4f2ec" data-label="Download">
+    <div class="scene-copy copy-center">
+      <img class="final-logo" src="assets/img/kepler-logo.png" alt="" />
+      <h2 class="c-h c-h-xl" data-words>Browse dark. Ship clean.</h2>
+      <p class="c-sub">Free, open source, and quiet by default.</p>
+      <div class="c-actions">
+        <a class="c-pill" href="download.html">Download Kepler <span aria-hidden="true">→</span></a>
+        <a class="c-link" href="docs.html">Read the docs</a>
+      </div>
+    </div>
+    <footer class="c-footer">
+      <span>KEPLER · MPL-2.0 · NO TRACKERS ON THIS PAGE</span>
+      <span><a href="index.html">Classic site</a> · <a href="docs.html">Docs</a> · <a href="download.html">Download</a></span>
+    </footer>
+  </section>
+
+  <!-- Transition layers -->
+  <div class="t-cloth" aria-hidden="true"><i></i></div>
+  <div class="t-pixels" aria-hidden="true"></div>
+</main>
+
+<!-- Scroll spacer: its height drives the whole film -->
+<div class="c-track" id="track" aria-hidden="true"></div>
+
+<div class="c-hint" aria-hidden="true"><span>Scroll</span><i></i></div>
+
+<script src="assets/js/i18n.js" defer></script>
+<script src="assets/js/cine.js" defer></script>
+</body>
+</html>
